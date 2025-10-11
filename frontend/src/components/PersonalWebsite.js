@@ -18,26 +18,29 @@ const PersonalWebsite = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
-      {/* Language Switcher */}
-      <div className="fixed top-6 right-6 z-50 flex gap-2">
+      {/* Language Switcher Toggle */}
+      <div className="fixed top-6 right-6 z-50">
         <button
-          onClick={() => switchLanguage('en')}
-          className={`w-8 h-6 rounded-sm overflow-hidden border-2 transition-all duration-200 hover:scale-110 ${
-            language === 'en' ? 'border-green-500' : 'border-gray-300 dark:border-gray-600'
-          }`}
+          onClick={() => switchLanguage(language === 'en' ? 'id' : 'en')}
+          className="relative w-16 h-8 rounded-full bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400 transition-all duration-300 hover:scale-105 shadow-lg"
         >
-          <div className="w-full h-full bg-gradient-to-b from-blue-500 via-white to-red-500 flex items-center justify-center">
-            <span className="text-[8px] font-bold text-blue-800">EN</span>
+          {/* Toggle Slider */}
+          <div
+            className={`absolute top-0.5 w-7 h-7 rounded-full transition-all duration-300 flex items-center justify-center shadow-md ${
+              language === 'en' 
+                ? 'left-0.5 bg-gradient-to-b from-blue-500 via-white to-red-500' 
+                : 'left-8 bg-gradient-to-b from-red-500 to-white'
+            }`}
+          >
+            <span className={`text-[8px] font-bold ${language === 'en' ? 'text-blue-800' : 'text-red-800'}`}>
+              {language === 'en' ? 'EN' : 'ID'}
+            </span>
           </div>
-        </button>
-        <button
-          onClick={() => switchLanguage('id')}
-          className={`w-8 h-6 rounded-sm overflow-hidden border-2 transition-all duration-200 hover:scale-110 ${
-            language === 'id' ? 'border-green-500' : 'border-gray-300 dark:border-gray-600'
-          }`}
-        >
-          <div className="w-full h-full bg-gradient-to-b from-red-500 to-white flex items-center justify-center">
-            <span className="text-[8px] font-bold text-red-800">ID</span>
+          
+          {/* Background Flags */}
+          <div className="absolute inset-0 flex">
+            <div className="w-1/2 h-full rounded-l-full bg-gradient-to-b from-blue-500 via-white to-red-500 opacity-30"></div>
+            <div className="w-1/2 h-full rounded-r-full bg-gradient-to-b from-red-500 to-white opacity-30"></div>
           </div>
         </button>
       </div>
